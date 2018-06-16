@@ -21,7 +21,7 @@
     {'price__sum': 10000245}
 ```
 
-#Django annotate function
+**Django annotate function**
 
 Annotate function in django is nothing but groupby query 
 **example**
@@ -52,6 +52,10 @@ Annotate function in django is nothing but groupby query
   {'country__name': u'Brazil', 'country_population': 38676123},
   '...(remaining elements truncated)...'
 ]
+
+
+>>> Account.objects.values('id').order_by('-id')
+<QuerySet [{'id': 9}, {'id': 8}, {'id': 7}, {'id': 6}, {'id': 5}, {'id': 4}, {'id': 3}, {'id': 1}]>
 ```
 
 **count() function:**
@@ -59,4 +63,10 @@ Annotate function in django is nothing but groupby query
 ```python
 City.objects.values('country__name').count()
 29
+```
+
+**distinct() function:**
+```python
+Account.objects.values('account_id').distinct()
+<QuerySet [{'account_id': 2}, {'account_id': 3}, {'account_id': 1}]>
 ```
