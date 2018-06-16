@@ -53,3 +53,10 @@ Annotate function in django is nothing but groupby query
   '...(remaining elements truncated)...'
 ]
 ```
+
+**count() function:**
+
+```python
+City.objects.values('country__name').count()
+29
+```
