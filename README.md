@@ -1,6 +1,20 @@
 # Project Title
 **Dive-Into-Django**
 
+**What is ORM?**
+
+ORMs provide a high-level abstraction upon a relational database that allows a developer to write Python code instead of SQL to create, read, update and delete data and schemas in their database. Developers can use the programming language they are comfortable with to work with a database instead of writing SQL statements or stored procedures.
+
+For example, without an ORM a developer would write the following SQL statement to retrieve every row in the USERS table where the zip_code column is 94107:
+
+```python
+SELECT * FROM USERS WHERE zip_code=94107;
+```
+The equivalent Django ORM query would instead look like the following Python code:
+
+```python
+>>> users = Users.objects.filter(zip_code=94107)
+```
 
 # Django aggregate function
   1. Max
