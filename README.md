@@ -9,7 +9,7 @@
   4. Sum
 
   **Example**
-
+```python
 >>> from django.db.models import Avg, Max, Min, Sum
 >>> device.objects.all().aggregate(Avg('price'))
     {'price__avg': 12234.0}
@@ -17,3 +17,4 @@
     {'price__max':587961 }
 >>> device.objects.all().aggregate(Min('price'))
     {'price__min': 01245}
+```
