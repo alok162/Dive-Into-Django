@@ -35,6 +35,11 @@ Annotate function in django is nothing but groupby query
   {'country__name': u'Brazil', 'population__sum': 38676123},
   '...(remaining elements truncated)...'
 ]
+
+
+>>> Account.objects.values('account_id').annotate(Count('stage'))
+<QuerySet [{'account_id': 2, 'stage__count': 2}, {'account_id': 3, 'stage__count': 3}, {'account_id': 1, 'stage__count': 3}]>
+
 ```
 
 **Orderby() function:**
@@ -67,6 +72,6 @@ City.objects.values('country__name').count()
 
 **distinct() function:**
 ```python
-Account.objects.values('account_id').distinct()
+>>> Account.objects.values('account_id').distinct()
 <QuerySet [{'account_id': 2}, {'account_id': 3}, {'account_id': 1}]>
 ```
