@@ -95,3 +95,26 @@ City.objects.values('country__name').count()
 >>> Account.objects.values('account_id').distinct()
 <QuerySet [{'account_id': 2}, {'account_id': 3}, {'account_id': 1}]>
 ```
+
+# Join
+**select_related:**
+select_related function is used to simply make sql join between tables.
+
+**exmaple**
+```python
+class Artist(models.Models):
+    name = models.CharField(max_length=200)
+    ...
+
+class Song(models.Models):
+    artist = models.ForeignKey(Artist)
+    ...
+
+```
+
+Lets perform join between two tables
+
+```python
+>>> Song.objects.select_related('artist').get(id=1234).artist.name
+'ALOK CHOUDHARY'
+```
