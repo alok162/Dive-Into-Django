@@ -1,4 +1,5 @@
 # Project Title
+
 **Dive-Into-Django**
 
 **What is ORM?**
@@ -10,6 +11,7 @@ For example, without an ORM a developer would write the following SQL statement 
 ```python
 SELECT * FROM USERS WHERE zip_code=94107;
 ```
+
 The equivalent Django ORM query would instead look like the following Python code:
 
 ```python
@@ -20,15 +22,17 @@ The ability to write Python code instead of SQL can speed up web application dev
 
 ORMs also make it theoretically possible to switch an application between various relational databases. For example, a developer could use SQLite for local development and MySQL in production. A production application could be switched from MySQL to PostgreSQL with minimal code modifications.
 
-
-
 # Django aggregate function
-  1. Max
-  2. Min
-  3. Avg
-  4. Sum
 
-  **Example**
+Aggregate calculates values for the entire queryset.
+
+1.  Max
+2.  Min
+3.  Avg
+4.  Sum
+
+**Example**
+
 ```python
 >>> from django.db.models import Avg, Max, Min, Sum
 >>> device.objects.all().aggregate(Avg('price'))
@@ -43,23 +47,16 @@ ORMs also make it theoretically possible to switch an application between variou
 
 **Django annotate function**
 
-Annotate function in django is nothing but groupby query 
+Annotate calculates summary values for each item in the queryset.
+
 **example**
+
 ```python
->>> City.objects.values('country__name').annotate(Sum('population'))
-    [
-  {'country__name': u'Angola', 'population__sum': 6542944},
-  {'country__name': u'Argentina', 'population__sum': 13074000},
-  {'country__name': u'Australia', 'population__sum': 9650500},
-  {'country__name': u'Bangladesh', 'population__sum': 17151925},
-  {'country__name': u'Brazil', 'population__sum': 38676123},
-  '...(remaining elements truncated)...'
-]
-
-
->>> Account.objects.values('account_id').annotate(Count('stage'))
-<QuerySet [{'account_id': 2, 'stage__count': 2}, {'account_id': 3, 'stage__count': 3}, {'account_id': 1, 'stage__count': 3}]>
-
+>>> q = Book.objects.annotate(num_authors=Count('authors'))
+>>> q[0].num_authors
+2
+>>> q[1].num_authors
+1
 ```
 
 **Orderby() function:**
@@ -91,16 +88,19 @@ City.objects.values('country__name').count()
 ```
 
 **distinct() function:**
+
 ```python
 >>> Account.objects.values('account_id').distinct()
 <QuerySet [{'account_id': 2}, {'account_id': 3}, {'account_id': 1}]>
 ```
 
 # Join
+
 **select_related:**
 select_related function is used to simply make sql join between tables.
 
 **exmaple**
+
 ```python
 class Artist(models.Models):
     name = models.CharField(max_length=200)
@@ -109,7 +109,6 @@ class Artist(models.Models):
 class Song(models.Models):
     artist = models.ForeignKey(Artist)
     ...
-
 ```
 
 Lets perform join between two tables
