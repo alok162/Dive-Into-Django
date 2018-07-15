@@ -47,16 +47,24 @@ Aggregate calculates values for the entire queryset.
 
 **Django annotate function**
 
-Annotate calculates summary values for each item in the queryset.
+Annotate function in django is nothing but groupby query
 
 **example**
 
 ```python
->>> q = Book.objects.annotate(num_authors=Count('authors'))
->>> q[0].num_authors
-2
->>> q[1].num_authors
-1
+>>> City.objects.values('country__name').annotate(Sum('population'))
+    [
+  {'country__name': u'Angola', 'population__sum': 6542944},
+  {'country__name': u'Argentina', 'population__sum': 13074000},
+  {'country__name': u'Australia', 'population__sum': 9650500},
+  {'country__name': u'Bangladesh', 'population__sum': 17151925},
+  {'country__name': u'Brazil', 'population__sum': 38676123},
+  '...(remaining elements truncated)...'
+]
+
+
+>>> Account.objects.values('account_id').annotate(Count('stage'))
+<QuerySet [{'account_id': 2, 'stage__count': 2}, {'account_id': 3, 'stage__count': 3}, {'account_id': 1, 'stage__count': 3}]>
 ```
 
 **Orderby() function:**
@@ -117,3 +125,5 @@ Lets perform join between two tables
 >>> Song.objects.select_related('artist').get(id=1234).artist.name
 'ALOK CHOUDHARY'
 ```
+
+# https://docs.djangoproject.com/en/1.11/ref/models/querysets/#id4
